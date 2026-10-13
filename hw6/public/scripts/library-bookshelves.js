@@ -1,8 +1,9 @@
-async function loadBooks() {
-  const response = await fetch("./data/poisonous_books.json");
-  const books = await response.json();
-
-  renderBooks(books);
+function loadBooks() {
+  // BONUS: Incorporate fetch() within client-side JS file
+  fetch("/books")
+    .then((response) => response.json())
+    .then((books) => renderBooks(books))
+    .catch((error) => console.error(error));
 }
 
 let viewedBooks = new Set();

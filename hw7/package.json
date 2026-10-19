@@ -1,0 +1,21 @@
+{
+  "name": "connlab_hw7",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch index.js",
+    "build:css": "sass public/styles/style.scss public/styles/style.css",
+    "watch:css": "sass --watch public/styles/style.scss:public/styles/style.css"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "lowdb": "^7.0.1"
+  },
+  "devDependencies": {
+    "sass": "^1.105.2"
+  }
+}

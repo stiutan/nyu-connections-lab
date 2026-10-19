@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+.secret-peel {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100svh;
+}
+.secret-peel > .peel-back {
+  background: #a3a3a3;
+}
+
+.secret-peel-flap-region {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 40px;
+  z-index: 10;
+  touch-action: none;
+  cursor: grab;
+}
+.secret-peel-flap-region:active {
+  cursor: grabbing;
+}
+
+.secrets-gallery {
+  padding: 32px;
+  background: #1b1a1a;
+  color: #d2cfd2;
+  display: grid;
+  place-items: center;
+}
+
+.secrets-wall {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.secrets-wall .secret {
+  position: absolute;
+  margin: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: min(280px, 100%);
+  overflow-wrap: anywhere;
+  color: rgba(210, 207, 210, 0.3);
+  animation: fade-secret 5s linear forwards;
+}
+
+.secret-input {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: min(100%, 640px);
+}
+.secret-input .secret-input-emoji {
+  margin: 0;
+  font-size: 64px;
+}
+.secret-input .secret-input-textbox {
+  width: 100%;
+  padding: 12px 0;
+  background-color: rgba(27, 26, 26, 0.8);
+  color: #d2cfd2;
+  border: none;
+  border-bottom: 2px solid #d2cfd2;
+  font-size: 24px;
+  outline: none;
+}
+
+.secret-secrets-wall {
+  background: #d2cfd2;
+  color: #1b1a1a;
+  padding: 32px;
+  overflow-wrap: anywhere;
+}
+.secret-secrets-wall .secret {
+  position: absolute;
+  margin: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: min(280px, 100%);
+  overflow-wrap: anywhere;
+}
+
+@keyframes fade-secret {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}/*# sourceMappingURL=style.css.map */

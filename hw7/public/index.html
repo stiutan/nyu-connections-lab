@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🤫%3C/text%3E%3C/svg%3E" />
+    <title>Secret Wall</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/andrewplummer/peel-js@master/src/peel.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div class="secret-peel peel">
+      <div class="secret-peel-flap-region">
+        <!-- invisible region for flap animation (not visuals just touch area) -->
+      </div>
+      <main class="secrets-gallery peel-top">
+        <div class="secrets-wall"></div>
+        <div class="secret-input">
+          <p class="secret-input-emoji" role="img">🤫</p>
+          <input
+            class="secret-input-textbox"
+            type="text"
+            name="secret"
+            autofocus
+            placeholder="write your secret here, no one will know..." />
+        </div>
+      </main>
+      <div class="peel-back"></div>
+      <section class="secret-secrets-wall peel-bottom"></section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/andrewplummer/peel-js@master/src/peel.js"></script>
+    <script src="helpers.js"></script>
+    <script src="secretSubmission.js"></script>
+    <script src="secretPeel.js"></script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+$dark-color: #1b1a1a;
+$mid-color: #a3a3a3;
+$light-color: #d2cfd2;
+
+* {
+  box-sizing: border-box;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+.secret-peel {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100svh;
+
+  > .peel-back {
+    background: $mid-color;
+  }
+}
+
+.secret-peel-flap-region {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 40px;
+  z-index: 10;
+  touch-action: none; // disallow browser touches for scrolling or zooming
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.secrets-gallery {
+  // position: fixed;
+  // inset: 0;
+  // z-index: 1;
+  padding: 32px;
+  background: $dark-color;
+  color: $light-color;
+  display: grid;
+  place-items: center;
+  // transform: translateY(0);
+  // transition: transform 600ms ease;
+
+  // &.is-dragging {
+  //   transition: none;
+  // }
+}
+
+.secrets-wall {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  .secret {
+    position: absolute;
+    margin: 0;
+    width: fit-content;
+    max-width: min(280px, 100%);
+    overflow-wrap: anywhere;
+    color: rgba($light-color, 0.3);
+    animation: fade-secret 5s linear forwards;
+  }
+}
+
+.secret-input {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: min(100%, 640px);
+
+  .secret-input-emoji {
+    margin: 0;
+    font-size: 64px;
+  }
+
+  .secret-input-textbox {
+    width: 100%;
+    padding: 12px 0;
+    background-color: rgba($dark-color, 0.8);
+    color: $light-color;
+    border: none;
+    border-bottom: 2px solid $light-color;
+    font-size: 24px;
+    outline: none;
+  }
+}
+
+.secret-secrets-wall {
+  // position: fixed;
+  // inset: 0;
+  // z-index: 0;
+  background: $light-color;
+  color: $dark-color;
+  padding: 32px;
+  overflow-wrap: anywhere;
+
+  .secret {
+    position: absolute;
+    margin: 0;
+    width: fit-content;
+    max-width: min(280px, 100%);
+    overflow-wrap: anywhere;
+  }
+}
+
+// .the-handle {
+//   position: fixed;
+//   left: 50%;
+//   bottom: 16px;
+//   z-index: 2;
+//   width: 120px;
+//   height: 20px;
+//   background-color: rgba(#a3a3a3, 0.4);
+//   border: 0px solid rgba(#a3a3a3, 0.4);
+//   border-radius: 6px;
+//   transform: translateX(-50%);
+//   transition: bottom 600ms ease;
+//   touch-action: none;
+//   user-select: none;
+//   cursor: grab;
+
+//   span {
+//     display: block;
+//     width: 100px;
+//     height: 2px;
+//     margin: auto;
+//     background: #a3a3a3;
+//   }
+
+//   &.is-dragging {
+//     transition: none;
+//     cursor: grabbing;
+//   }
+// }
+
+@keyframes fade-secret {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

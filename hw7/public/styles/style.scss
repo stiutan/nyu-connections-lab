@@ -28,8 +28,8 @@ body {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 20px;
-  height: 40px;
+  width: 40px;
+  height: 30px;
   z-index: 10;
   touch-action: none; // disallow browser touches for scrolling or zooming
   cursor: grab;
@@ -40,20 +40,11 @@ body {
 }
 
 .secrets-gallery {
-  // position: fixed;
-  // inset: 0;
-  // z-index: 1;
   padding: 32px;
   background: $dark-color;
   color: $light-color;
   display: grid;
   place-items: center;
-  // transform: translateY(0);
-  // transition: transform 600ms ease;
-
-  // &.is-dragging {
-  //   transition: none;
-  // }
 }
 
 .secrets-wall {
@@ -99,9 +90,6 @@ body {
 }
 
 .secret-secrets-wall {
-  // position: fixed;
-  // inset: 0;
-  // z-index: 0;
   background: $light-color;
   color: $dark-color;
   padding: 32px;
@@ -115,36 +103,6 @@ body {
     overflow-wrap: anywhere;
   }
 }
-
-// .the-handle {
-//   position: fixed;
-//   left: 50%;
-//   bottom: 16px;
-//   z-index: 2;
-//   width: 120px;
-//   height: 20px;
-//   background-color: rgba(#a3a3a3, 0.4);
-//   border: 0px solid rgba(#a3a3a3, 0.4);
-//   border-radius: 6px;
-//   transform: translateX(-50%);
-//   transition: bottom 600ms ease;
-//   touch-action: none;
-//   user-select: none;
-//   cursor: grab;
-
-//   span {
-//     display: block;
-//     width: 100px;
-//     height: 2px;
-//     margin: auto;
-//     background: #a3a3a3;
-//   }
-
-//   &.is-dragging {
-//     transition: none;
-//     cursor: grabbing;
-//   }
-// }
 
 @keyframes fade-secret {
   from {

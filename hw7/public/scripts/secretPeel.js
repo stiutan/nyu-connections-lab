@@ -28,19 +28,22 @@ const startPeel = () => {
 
   state.isDragging = true;
 
-  // reset secret inner wall
+  /**
+   * #HW7 - Route 3
+   * Fetch stored data via the “/data” route
+   */
   fetch("/secrets")
     .then((res) => res.json())
     .then((resJson) => {
       let wall = document.querySelector(".secret-secrets-wall");
-      wall.replaceChildren();
+      wall.replaceChildren(); // reset secret inner wall
 
       resJson.secrets.forEach((secretEntry) => {
         addToWall(wall, secretEntry.secret, false);
       });
     })
     .catch((e) => console.error(e));
-};
+};;
 
 const settlePeel = (target) => {
   state.isDragging = false;

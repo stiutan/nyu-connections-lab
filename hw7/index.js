@@ -41,7 +41,7 @@ app.post("/new-secret", (req, res) => {
 });
 
 /**
- * #HW7 - Route 3
+ * #HW7 Route 3
  * Serve stored data via the “/data” route
  */
 app.get("/secrets", (req, res) => {

@@ -7,20 +7,35 @@ let myData = {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  textFont("Inter");
+
+  setupMyData();
+  setupSocket();
+}
+
+function setupMyData() {
+  // avoid ugly colors lol (too vivid, too light)
+  colorMode(HSL, 360, 100, 100);
+  let randomColor = color(random(360), random(35, 65), random(30, 50));
 
   myData.name = prompt("Please enter your name:", "Anonymous") || "Anonymous";
   myData.color = {
-    r: random(255),
-    g: random(255),
-    b: random(255),
+    r: red(randomColor),
+    g: green(randomColor),
+    b: blue(randomColor),
   };
 
+  // reset back to rgb for drawing
+  colorMode(RGB, 255);
+}
+
+function setupSocket() {
   socket = io();
 
   socket.on("connect", () => {
     console.log("Connected to Socket");
 
-    // uncomment if you want an initial loading location for users
+    // uncomment if you want an initial loading location for users / using WASD
     // socket.emit("user-update", { ...myData, x: mouseX, y: mouseY });
   });
 
@@ -40,7 +55,7 @@ function setup() {
 function draw() {
   background(255);
   for (let user of Object.values(users)) {
-    drawUser(user);
+    drawUser(getUserDrawData(user));
   }
 }
 
@@ -63,6 +78,7 @@ function drawUser(user) {
   ellipse(user.x, user.y, 10, 10);
 
   // name
+  fill(r, g, b, user.opacity);
   textAlign(CENTER, BOTTOM);
   text(user.name, user.x, user.y - 10);
 

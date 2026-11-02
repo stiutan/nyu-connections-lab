@@ -2,8 +2,8 @@ const sendChatLog = (message) => {
   if (socket && socket.connected) {
     socket.emit("user-log", {
       message,
-      name: myData.name,
-      color: myData.color,
+      name: myUser.name,
+      color: myUser.color,
     });
   }
 };
@@ -28,11 +28,11 @@ const addToChatLog = (entry) => {
 };
 
 const logMyArrival = () => {
-  sendChatLog(`👋🏼 ${myData.name} entered the floor!`);
+  sendChatLog(`👋🏼 ${myUser.name} entered the floor!`);
 };
 
 const logPoke = () => {
-  sendChatLog(`🫵🏼 ${myData.name} just poked your face.`);
+  sendChatLog(`🫵🏼 ${myUser.name} just poked your face.`);
 };
 
 const logUserDeparture = (user) => {

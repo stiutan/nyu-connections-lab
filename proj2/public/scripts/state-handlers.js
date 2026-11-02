@@ -1,6 +1,7 @@
 let socket;
 let users = {};
-let myData = {
-  name: "",
-  color: {},
+let myUser = {
+  name: null,
+  color: null,
+  position: null,
 };

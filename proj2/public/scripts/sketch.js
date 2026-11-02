@@ -1,10 +1,3 @@
-let socket;
-let users = {};
-let myData = {
-  name: "",
-  color: {},
-};
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont("Inter");
@@ -31,9 +24,11 @@ function setupMyData() {
 
 function setupSocket() {
   socket = io();
+  displayChatLog();
 
   socket.on("connect", () => {
     console.log("Connected to Socket");
+    logMyArrival();
 
     // uncomment if you want an initial loading location for users / using WASD
     // socket.emit("user-update", { ...myData, x: mouseX, y: mouseY });
@@ -43,11 +38,12 @@ function setupSocket() {
     users = allUsers;
   });
 
-  socket.on("user-data", (data) => {
-    users[data.id] = data;
+  socket.on("user-data", (user) => {
+    users[user.id] = user;
   });
 
-  socket.on("user-disconnected", (id) => {
+  socket.on("user-disconnected", ({ id, user }) => {
+    if (user) logUserDeparture(user);
     delete users[id];
   });
 }
@@ -63,6 +59,10 @@ function mouseMoved() {
   if (socket && socket.connected) {
     socket.emit("user-update", { ...myData, x: mouseX, y: mouseY });
   }
+}
+
+function mousePressed() {
+  logPoke();
 }
 
 function drawUser(user) {

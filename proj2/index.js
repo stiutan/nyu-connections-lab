@@ -15,6 +15,12 @@ io.on("connection", (socket) => {
   console.log("We have a new user: " + socket.id);
   socket.emit("users", users);
 
+  socket.on("user-log", (entry) => {
+    // Remember profile info even before the user's first mouse movement.
+    socket.data.user = { name: entry.name, color: entry.color };
+    io.emit("user-log", entry);
+  });
+
   // listen to updates from users
   socket.on("user-update", (updatedData) => {
     // add socket id for identification & update users
@@ -27,7 +33,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     delete users[socket.id];
-    io.emit("user-disconnected", socket.id);
+    io.emit("user-disconnected", { id: socket.id, user: socket.data.user });
     console.log("A user has disconnected: " + socket.id);
   });
 });

@@ -17,8 +17,18 @@
   </head>
 
   <body>
-    <div class="instructions">
+    <div class="settings">
       <button class="audio-instruction" type="button">enable audio</button>
+      <div class="movement-toggle" role="group">
+        <label>
+          <input type="radio" name="movement-mode" value="mouse" checked />
+          <span>mouse</span>
+        </label>
+        <label>
+          <input type="radio" name="movement-mode" value="keys" />
+          <span>keys</span>
+        </label>
+      </div>
     </div>
 
     <div class="chat-log"></div>

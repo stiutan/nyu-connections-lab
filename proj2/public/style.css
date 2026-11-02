@@ -24,12 +24,53 @@ body {
 .chat-log p {
   flex-shrink: 0;
   margin: 4px 0;
+  animation: fade-out 1s 30s forwards;
 }
 
-.instructions {
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   position: fixed;
   top: 4px;
   right: 4px;
+}
+
+.movement-toggle {
+  display: flex;
+  gap: 2px;
+  padding: 4px 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+.movement-toggle label {
+  position: relative;
+  cursor: pointer;
+}
+
+.movement-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.movement-toggle span {
+  display: block;
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: #777;
+}
+
+.movement-toggle input:checked + span,
+.movement-toggle label:hover span {
+  background: #eee;
+  color: black;
+}
+
+.movement-toggle input:focus-visible + span {
+  outline: 1px solid black;
 }
 
 .audio-instruction {
@@ -53,4 +94,13 @@ button.audio-instruction:hover {
 button.audio-instruction:disabled {
   cursor: default;
   opacity: 1;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

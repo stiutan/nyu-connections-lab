@@ -22,7 +22,7 @@ const addToChatLog = (entry) => {
   message.style.color = `rgb(${r}, ${g}, ${b})`;
 
   log.appendChild(message);
-
+  message.addEventListener("animationend", () => message.remove());
 };
 
 const logMyArrival = () => {

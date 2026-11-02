@@ -5,6 +5,15 @@ function setup() {
   setupMyUser();
   setupAudio();
   setupSocket();
+  setupMovementToggle();
+}
+
+function setupMovementToggle() {
+  document
+    .querySelector(".movement-toggle")
+    .addEventListener("change", (event) => {
+      movementMode = movementOptions[event.target.value];
+    });
 }
 
 function setupMyUser() {
@@ -84,7 +93,7 @@ function draw() {
 
 function mouseMoved() {
   // mainly used for first initial position, draw handles other movement
-  if (myUser.position === null) {
+  if (movementMode === movementOptions.mouse && myUser.position === null) {
     moveUser({ x: mouseX, y: mouseY });
   }
 }

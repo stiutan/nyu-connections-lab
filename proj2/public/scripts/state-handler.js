@@ -1,5 +1,11 @@
 let socket;
 
+let movementOptions = {
+  mouse: "mouse",
+  keys: "keys",
+};
+let movementMode = movementOptions.mouse;
+
 let users = {}; // includes me
 let myUser = {
   name: null,

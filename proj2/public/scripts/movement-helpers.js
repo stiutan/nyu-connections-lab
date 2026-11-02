@@ -31,3 +31,8 @@ const moveUser = (position) => {
     socket.emit("user-update", myUser);
   }
 };
+
+const updatePosition = () => {
+  let nextPosition = calcNextPosition(myUser.position);
+  if (nextPosition) moveUser(nextPosition);
+};

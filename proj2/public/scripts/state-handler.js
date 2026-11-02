@@ -1,6 +1,6 @@
 let socket;
 
-let users = {};
+let users = {}; // includes me
 let myUser = {
   name: null,
   color: null,
@@ -8,4 +8,5 @@ let myUser = {
 };
 
 let audioRoom;
+let audios = {}; // does not include me (based on subscriptions)
 let myAudio;

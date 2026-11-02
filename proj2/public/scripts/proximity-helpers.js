@@ -1,38 +1,53 @@
 // update these to set proximity distances
-const min = 80;
-const max = 320;
-const maxForName = 120;
+const nearDist = 80;
+const farDist_icon = 240; // for icon color, size
+const farDist_identity = 120; // for identification (name, audio)
 
-function getProximity(pos1, pos2, _max = max) {
-  if (!pos1 || !pos2) {
-    return _max;
+function getProximity(otherUser, farDist) {
+  if (!otherUser.position || !myUser.position) {
+    return farDist;
   }
 
+  let { x: x1, y: y1 } = otherUser.position;
+  let { x: x2, y: y2 } = myUser.position;
+
   // calculate distance for prox
-  let distance = dist(pos1.x, pos1.y, pos2.x, pos2.y);
+  let distance = dist(x1, y1, x2, y2);
 
   // cap off distances to range
-  return constrain(distance, min, _max);
+  return constrain(distance, nearDist, farDist);
 }
 
+const getMappedProximity = (otherUser, farDist, nearVal, farVal) => {
+  let proximity = getProximity(otherUser, farDist);
+  return map(proximity, nearDist, farDist, nearVal, farVal);
+};
+
 const getColor = (user) => {
-  let proximity = getProximity(user.position, myUser.position);
   let { r, g, b } = user.color;
   return {
-    r: map(proximity, min, max, r, 0),
-    g: map(proximity, min, max, g, 0),
-    b: map(proximity, min, max, b, 0),
+    r: getMappedProximity(user, farDist_icon, r, 0),
+    g: getMappedProximity(user, farDist_icon, g, 0),
+    b: getMappedProximity(user, farDist_icon, b, 0),
   };
 };
 
-const getNameOpacity = (user) => {
-  let proximity = getProximity(user.position, myUser.position, maxForName);
-  return map(proximity, min, maxForName, 255, 0);
+const getSize = (user) => {
+  let nearSize = 12; // larger icon
+  let farSize = 4; // smaller icon
+  return getMappedProximity(user, farDist_icon, nearSize, farSize);
 };
 
-const getSize = (user) => {
-  let proximity = getProximity(user.position, myUser.position);
-  return map(proximity, min, max, 12, 4);
+const getNameOpacity = (user) => {
+  let nearOpacity = 255; // 0% opaque
+  let farOpacity = 0; // 100% opaque
+  return getMappedProximity(user, farDist_identity, nearOpacity, farOpacity);
+};
+
+const getAudioVolume = (user) => {
+  let nearVolume = 1; // 0% opaque
+  let farVolume = 0; // 100% opaque
+  return getMappedProximity(user, farDist_identity, nearVolume, farVolume);
 };
 
 const getUserDrawData = (user) => {

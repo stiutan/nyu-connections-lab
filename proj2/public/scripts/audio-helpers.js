@@ -16,23 +16,25 @@ const joinAudioRoom = async () => {
   audioRoom = new LivekitClient.Room();
 
   // listen for subscriptions to other users' audios
-  audioRoom.on(
-    LivekitClient.RoomEvent.TrackSubscribed,
-    (track, publication, participant) => {
-      if (track.kind !== LivekitClient.Track.Kind.Audio) {
-        return;
-      }
+  audioRoom.on(LivekitClient.RoomEvent.TrackSubscribed, (track, _, user) => {
+    if (track.kind !== LivekitClient.Track.Kind.Audio) return;
 
-      // play audio received from others
-      let audioElement = track.attach();
-      document.body.appendChild(audioElement);
+    // add audio to list
+    audios[user.identity] = track;
 
-      console.log("Receiving audio from: ", participant.identity);
-    },
-  );
+    // play audio received from others
+    track.setVolume(0);
+    let audioElement = track.attach();
+    document.body.appendChild(audioElement);
+
+    console.log("Receiving audio from: ", user.identity);
+  });
 
   // listen for unsubscriptions to other users' audios
-  audioRoom.on(LivekitClient.RoomEvent.TrackUnsubscribed, (track) => {
+  audioRoom.on(LivekitClient.RoomEvent.TrackUnsubscribed, (track, _, user) => {
+    if (track.kind !== LivekitClient.Track.Kind.Audio) return;
+
+    delete audios[user.identity];
     track.detach().forEach((element) => element.remove());
   });
 
@@ -73,6 +75,13 @@ const enableAudio = async () => {
   } catch (e) {
     console.error("Could not enable audio: ", e);
     return false;
+  }
+};
+
+const updateAudioVolumes = () => {
+  for (let [id, audio] of Object.entries(audios)) {
+    let user = users[id];
+    audio.setVolume(user ? getAudioVolume(user) : 0);
   }
 };
 

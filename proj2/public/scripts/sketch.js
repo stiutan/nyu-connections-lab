@@ -77,8 +77,8 @@ function setupSocket() {
 function draw() {
   background(255);
 
-  let nextPosition = calcNextPosition(myUser.position);
-  if (nextPosition) moveUser(nextPosition);
+  updatePosition();
+  updateAudioVolumes();
 
   for (let user of Object.values(users)) {
     drawUser(getUserDrawData(user));
@@ -93,7 +93,6 @@ function mouseMoved() {
 }
 
 function mousePressed(event) {
-  if (event?.target.closest("button")) return;
   logPoke();
 }
 

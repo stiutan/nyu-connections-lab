@@ -85,7 +85,15 @@ const updateAudioVolumes = () => {
   }
 };
 
-const isAudioRoomConnected = () => audioRoom?.state === "connected";
+const isSpeaking = (id) => {
+  if (!isAudioRoomConnected()) return false;
+
+  if (id === audioRoom.localParticipant.identity) {
+    return myAudio && !myAudio.isMuted;
+  } else {
+    return audios[id] && !audios[id].isMuted;
+  }
+};
 
 const unmute = async () => {
   if (myAudio) {
@@ -100,3 +108,5 @@ const mute = async () => {
     console.log("Speaking: false");
   }
 };
+
+const isAudioRoomConnected = () => audioRoom?.state === "connected";

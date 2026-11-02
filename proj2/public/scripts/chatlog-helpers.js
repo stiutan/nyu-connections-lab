@@ -13,7 +13,7 @@ const displayChatLog = () => {
 };
 
 const addToChatLog = (entry) => {
-  let log = document.getElementById("chat-log");
+  let log = document.querySelector(".chat-log");
 
   let message = document.createElement("p");
   message.textContent = entry.message;
@@ -23,8 +23,6 @@ const addToChatLog = (entry) => {
 
   log.appendChild(message);
 
-  // if (log.children.length > 100) log.firstElementChild.remove();
-  log.scrollTop = log.scrollHeight;
 };
 
 const logMyArrival = () => {

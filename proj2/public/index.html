@@ -6,18 +6,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400&display=swap"
       rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
     <title>Drawing with Sockets and p5</title>
   </head>
 
   <body>
-    <div id="chat-log" role="log" aria-label="Activity log" aria-live="polite"></div>
+    <div class="instructions">
+      <button class="audio-instruction" type="button">enable audio</button>
+    </div>
+    <div class="chat-log"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script src="scripts/state-handlers.js"></script>
+    <script src="scripts/state-handler.js"></script>
+    <script src="scripts/audio-helpers.js"></script>
     <script src="scripts/movement-helpers.js"></script>
     <script src="scripts/proximity-helpers.js"></script>
     <script src="scripts/chatlog-helpers.js"></script>

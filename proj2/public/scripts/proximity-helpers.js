@@ -1,9 +1,13 @@
 // update these to set proximity distances
-const min = 100;
-const max = 400;
-const maxForName = 200;
+const min = 80;
+const max = 320;
+const maxForName = 120;
 
 function getProximity(pos1, pos2, _max = max) {
+  if (!pos1 || !pos2) {
+    return _max;
+  }
+
   // calculate distance for prox
   let distance = dist(pos1.x, pos1.y, pos2.x, pos2.y);
 

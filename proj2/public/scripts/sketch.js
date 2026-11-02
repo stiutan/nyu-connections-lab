@@ -3,6 +3,7 @@ function setup() {
   textFont("Inter");
 
   setupMyUser();
+  setupAudio();
   setupSocket();
 }
 
@@ -21,6 +22,31 @@ function setupMyUser() {
   // reset back to rgb for drawing
   colorMode(RGB, 255);
 }
+
+const setupAudio = () => {
+  // handle audio set up button
+  let button = document.querySelector("button.audio-instruction");
+  button.addEventListener("click", async () => {
+    // disable audio while connecting
+    button.disabled = true;
+
+    let enabled = await enableAudio();
+    if (enabled) {
+      // replace audio enablement button with instruction text
+      let ptext = document.createElement("p");
+      ptext.className = "audio-instruction";
+      ptext.textContent = "hold down space to speak";
+
+      button.replaceWith(ptext);
+    } else {
+      // if connection failed, re-enable button
+      button.disabled = false;
+    }
+  });
+
+  // mute whenever user leaves window
+  window.addEventListener("blur", mute);
+};
 
 function setupSocket() {
   socket = io();
@@ -66,8 +92,23 @@ function mouseMoved() {
   }
 }
 
-function mousePressed() {
+function mousePressed(event) {
+  if (event?.target.closest("button")) return;
   logPoke();
+}
+
+function keyPressed() {
+  if (key === " ") {
+    unmute();
+    return false; // cancel keyboard behavior
+  }
+}
+
+function keyReleased() {
+  if (key === " ") {
+    mute();
+    return false; // cancel keyboard behavior
+  }
 }
 
 function drawUser(user) {

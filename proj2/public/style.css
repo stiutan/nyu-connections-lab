@@ -7,19 +7,50 @@ body {
   overflow: hidden;
 }
 
-#chat-log {
+.chat-log {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   position: fixed;
   left: 0;
   bottom: 0;
-  z-index: 1;
   width: 240px;
   padding: 12px;
   overflow: hidden;
   pointer-events: none;
   font-size: 10px;
-  line-height: 1.5;
 }
 
-#chat-log p {
+.chat-log p {
+  flex-shrink: 0;
   margin: 4px 0;
+}
+
+.instructions {
+  position: fixed;
+  top: 4px;
+  right: 4px;
+}
+
+.audio-instruction {
+  border: 0;
+  margin: 0;
+  padding: 4px 8px;
+  background: transparent;
+  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+button.audio-instruction {
+  cursor: pointer;
+}
+
+button.audio-instruction:hover {
+  background: #eee;
+}
+
+button.audio-instruction:disabled {
+  cursor: default;
+  opacity: 1;
 }

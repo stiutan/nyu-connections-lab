@@ -9,22 +9,31 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400&display=swap"
       rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
-    <title>Drawing with Sockets and p5</title>
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E💬%3C/text%3E%3C/svg%3E" />
+    <title>The Floor</title>
   </head>
 
   <body>
     <div class="instructions">
       <button class="audio-instruction" type="button">enable audio</button>
     </div>
+
     <div class="chat-log"></div>
 
+    <!-- libraries -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
-    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- my scripts -->
     <script src="scripts/state-handler.js"></script>
-    <script src="scripts/audio-helpers.js"></script>
     <script src="scripts/movement-helpers.js"></script>
     <script src="scripts/proximity-helpers.js"></script>
+    <script src="scripts/audio-helpers.js"></script>
+    <script src="scripts/icon-helpers.js"></script>
     <script src="scripts/chatlog-helpers.js"></script>
     <script src="scripts/sketch.js"></script>
   </body>

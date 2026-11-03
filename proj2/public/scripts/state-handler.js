@@ -1,11 +1,5 @@
 let socket;
 
-let movementOptions = {
-  mouse: "mouse",
-  keys: "keys",
-};
-let movementMode = movementOptions.mouse;
-
 let users = {}; // includes me
 let myUser = {
   name: null,
@@ -16,3 +10,12 @@ let myUser = {
 let audioRoom;
 let audios = {}; // does not include me (based on subscriptions)
 let myAudio;
+
+// proximity values
+let defaultColor = { r: 26, g: 47, b: 96 }; // default navy blue
+let maxSize = 10; // larger icon
+let minSize = 4; // smaller icon
+let maxOpacity = 255; // 0% opaque
+let minOpacity = 0; // 100% opaque
+let maxVolume = 1; // full volume
+let minVolume = 0; // no volume

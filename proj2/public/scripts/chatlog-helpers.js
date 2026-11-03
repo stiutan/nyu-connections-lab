@@ -1,3 +1,7 @@
+/**
+ * helpers to handle logs in chatlog
+ */
+
 const sendChatLog = (message) => {
   if (socket && socket.connected) {
     socket.emit("user-log", {
@@ -26,7 +30,7 @@ const addToChatLog = (entry) => {
 };
 
 const logMyArrival = () => {
-  sendChatLog(`👋🏼 ${myUser.name} entered the floor!`);
+  sendChatLog(`👋🏼 ${myUser.name} just got off the elevator!`);
 };
 
 const logPoke = () => {

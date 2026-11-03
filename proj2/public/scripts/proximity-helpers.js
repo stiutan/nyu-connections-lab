@@ -1,14 +1,19 @@
+/**
+ * helpers to calculate proximity to users/objects +
+ * mapping needed values based on proximity
+ */
+
 // update these to set proximity distances
 const nearDist = 24;
-const farDist = 80; // for icon color, size
-const farDist_identity = 60; // for identification (name, audio)
+const farDist = 80; // for icon color, size, audio
+const farDist_identity = 60; // for name
 
-function getProximity(otherUser, _farDist = farDist) {
-  if (!otherUser.position || !myUser.position) {
+function getProximity(other, _farDist = farDist) {
+  if (!other.position || !myUser.position) {
     return _farDist;
   }
 
-  let { x: x1, y: y1 } = otherUser.position;
+  let { x: x1, y: y1 } = other.position;
   let { x: x2, y: y2 } = myUser.position;
 
   // calculate distance for prox
@@ -18,6 +23,7 @@ function getProximity(otherUser, _farDist = farDist) {
   return constrain(distance, nearDist, _farDist);
 }
 
+// maps distance values to
 const getMappedProximity = (otherUser, nearVal, farVal, _farDist = farDist) => {
   let proximity = getProximity(otherUser, _farDist);
   return map(proximity, nearDist, _farDist, nearVal, farVal);
@@ -25,30 +31,24 @@ const getMappedProximity = (otherUser, nearVal, farVal, _farDist = farDist) => {
 
 const getColor = (user) => {
   let { r, g, b } = user.color;
-  let farColor = { r: 26, g: 47, b: 96 }; // default navy blue
   return {
-    r: getMappedProximity(user, r, farColor.r),
-    g: getMappedProximity(user, g, farColor.g),
-    b: getMappedProximity(user, b, farColor.b),
+    r: getMappedProximity(user, r, defaultColor.r),
+    g: getMappedProximity(user, g, defaultColor.g),
+    b: getMappedProximity(user, b, defaultColor.b),
   };
 };
 
 const getSize = (user) => {
-  let nearSize = 12; // larger icon
-  let farSize = 4; // smaller icon
-  return getMappedProximity(user, nearSize, farSize);
+  return getMappedProximity(user, maxSize, minSize);
 };
 
 const getOpacity = (user) => {
-  let nearOpacity = 255; // 0% opaque
-  let farOpacity = 0; // 100% opaque
-  return getMappedProximity(user, nearOpacity, farOpacity, farDist_identity);
+  return getMappedProximity(user, maxOpacity, minOpacity, farDist_identity);
 };
 
 const getAudioVolume = (user) => {
-  let nearVolume = 1; // 0% opaque
-  let farVolume = 0; // 100% opaque
-  return getMappedProximity(user, nearVolume, farVolume) ** 2; // square to put volume on a curve
+  let proximity = getMappedProximity(user, maxVolume, minVolume);
+  return proximity ** 2; // square to put volume on a curve
 };
 
 const getUserDrawData = (user) => {

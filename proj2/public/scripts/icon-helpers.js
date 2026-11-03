@@ -1,7 +1,16 @@
+/**
+ * helpers to draw user dots/icons
+ */
+
 function updateUserIcons() {
-  for (let user of Object.values(users)) {
+  push();
+  scale(getMapScale());
+
+  Object.values(users).forEach((user) => {
     drawUser(getUserDrawData(user));
-  }
+  });
+
+  pop();
 }
 
 function drawUser(user) {
@@ -21,7 +30,8 @@ function drawUser(user) {
   // name
   fill(r, g, b, opacity);
   textAlign(CENTER, BOTTOM);
-  text(name, x, y - 10);
+  textSize(10);
+  text(name, x, y - 8);
 
   pop();
 
@@ -32,7 +42,7 @@ function drawUser(user) {
 
 function drawSpeakingRing(user) {
   let progress = (millis() % 800) / 800; // restart cycle every 800ms
-  let ringSize = user.size + progress * 16;
+  let ringSize = user.size + progress * 12;
   let opacity = user.opacity * (1 - progress);
 
   let { r, g, b } = user.color;

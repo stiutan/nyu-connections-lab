@@ -45,43 +45,6 @@ body {
   z-index: 20;
 }
 
-.movement-toggle {
-  display: flex;
-  gap: 2px;
-  padding: 4px 8px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
-}
-
-.movement-toggle label {
-  position: relative;
-  cursor: pointer;
-}
-
-.movement-toggle input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-}
-
-.movement-toggle span {
-  display: block;
-  padding: 3px 6px;
-  border-radius: 4px;
-  color: #777;
-}
-
-.movement-toggle input:checked + span,
-.movement-toggle label:hover span {
-  background: #eee;
-  color: black;
-}
-
-.movement-toggle input:focus-visible + span {
-  outline: 1px solid black;
-}
-
 .audio-instruction {
   border: 0;
   margin: 0;
@@ -134,13 +97,10 @@ button.audio-instruction:disabled {
 }
 
 /* p5 Canvas Positioning (Prevents p5 from pushing layout) */
-canvas,
-#defaultCanvas0 {
-  position: absolute !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
+.map-container canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
   pointer-events: none; /* Allows clicks to reach items below */
 }
 
@@ -150,7 +110,7 @@ canvas,
   width: 5%; /* Adjust percentage width to size PNG items relative to map */
   height: auto;
   cursor: pointer;
-  z-index: 6;
+  z-index: 2;
   transition:
     transform 0.2s ease,
     filter 0.2s ease;

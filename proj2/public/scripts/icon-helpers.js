@@ -21,7 +21,7 @@ function drawUser(user) {
   // name
   fill(r, g, b, opacity);
   textAlign(CENTER, BOTTOM);
-  text(name, x, y - size);
+  text(name, x, y - 10);
 
   pop();
 

@@ -21,7 +21,7 @@ function setupMyUser() {
   colorMode(HSL, 360, 100, 100);
   let randomColor = color(random(360), random(35, 65), random(30, 50));
 
-  myUser.name = prompt("Please enter your name:", "Anonymous") || "Anonymous";
+  myUser.name = prompt("Please enter your name:", "anonymous") || "anonymous";
   myUser.color = {
     r: red(randomColor),
     g: green(randomColor),

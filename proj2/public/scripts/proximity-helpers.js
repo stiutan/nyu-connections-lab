@@ -1,7 +1,7 @@
 // update these to set proximity distances
-const nearDist = 80;
-const farDist = 240; // for icon color, size
-const farDist_identity = 120; // for identification (name, audio)
+const nearDist = 24;
+const farDist = 80; // for icon color, size
+const farDist_identity = 60; // for identification (name, audio)
 
 function getProximity(otherUser, _farDist = farDist) {
   if (!otherUser.position || !myUser.position) {
@@ -25,11 +25,11 @@ const getMappedProximity = (otherUser, nearVal, farVal, _farDist = farDist) => {
 
 const getColor = (user) => {
   let { r, g, b } = user.color;
-  let farColor = 0; // black
+  let farColor = { r: 26, g: 47, b: 96 }; // default navy blue
   return {
-    r: getMappedProximity(user, r, farColor),
-    g: getMappedProximity(user, g, farColor),
-    b: getMappedProximity(user, b, farColor),
+    r: getMappedProximity(user, r, farColor.r),
+    g: getMappedProximity(user, g, farColor.g),
+    b: getMappedProximity(user, b, farColor.b),
   };
 };
 

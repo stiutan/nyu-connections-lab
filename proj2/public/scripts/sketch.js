@@ -84,7 +84,7 @@ function setupSocket() {
 }
 
 function draw() {
-  background(255);
+  clear();
 
   updatePosition();
   updateAudioVolumes();

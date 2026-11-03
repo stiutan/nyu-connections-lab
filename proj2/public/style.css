@@ -3,10 +3,17 @@ body {
   background-color: white;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
   overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Fixed UI Elements */
 .chat-log {
   display: flex;
   flex-direction: column;
@@ -19,6 +26,7 @@ body {
   overflow: hidden;
   pointer-events: none;
   font-size: 10px;
+  z-index: 20;
 }
 
 .chat-log p {
@@ -34,6 +42,7 @@ body {
   position: fixed;
   top: 4px;
   right: 4px;
+  z-index: 20;
 }
 
 .movement-toggle {
@@ -104,3 +113,57 @@ button.audio-instruction:disabled {
     opacity: 0;
   }
 }
+
+/* Map Container & Floor Map Image */
+.map-container {
+  position: relative;
+  display: inline-block;
+  max-width: 80vw;  /* Adjust max-width to scale overall map size */
+  max-height: 80vh; /* Keeps map within screen height */
+  z-index: 1;
+}
+
+/* Fixed: Changed #floor-map to .floor-map to match HTML class */
+.floor-map {
+  display: block;
+  width: 100%;
+  max-width: 80vw;
+  max-height: 80vh;
+  height: auto;
+  object-fit: contain;
+}
+
+/* p5 Canvas Positioning (Prevents p5 from pushing layout) */
+canvas, #defaultCanvas0 {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: none; /* Allows clicks to reach items below */
+}
+
+/* Interactive Items Layer */
+.interactive-item {
+  position: absolute;
+  width: 5%; /* Adjust percentage width to size PNG items relative to map */
+  height: auto;
+  cursor: pointer;
+  z-index: 6;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.interactive-item:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.9));
+}
+
+/* Item Coordinate Placement */
+#item-1 { top: 27%; left: 60%; } /*lazer*/
+#item-2 { top: 29%; left: 37%; } /*er*/
+#item-3 { top: 38%; left: 51%; }/*band*/
+#item-4 { top: 10%; left: 22%; }/*print*/
+#item-5 { top: 7%; left: 54%; }/*solder*/
+#item-6 { top: 38%; left: 17%; }/*foos*/
+#item-7 { top: 65%; left: 19%; } /*vend*/
+#item-8 { top: 37%; left: 71%; } /*coffee*/

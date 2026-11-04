@@ -1,8 +1,19 @@
+@font-face {
+  font-family: 'VCR OSD Mono';
+  src: url('assets/VCR_OSD_MONO_1.001.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  font-family: 'VCR OSD Mono', monospace;
+}
+
 html,
 body {
   background-image: url(assets/paperTex.jpg);
   background-size: cover;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-family: 'VCR OSD Mono', monospace;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,18 +27,17 @@ body {
 
 /* Fixed UI Elements */
 .chat-log {
+ position: fixed;       /* Keeps it pinned relative to the screen */
+  bottom: 20px;          /* Distance from the bottom edge */
+  right: 20px;           /* Distance from the right edge */
+  left: auto;            /* Overrides any previous left positioning */
+  top: auto;             /* Overrides any previous top positioning */
+  
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 240px;
-  padding: 12px;
-  overflow: hidden;
-  pointer-events: none;
-  font-size: 10px;
-  z-index: 20;
+  align-items: flex-end; /* Keeps text aligned to the right side */
+  pointer-events: none;  /* Allows clicking through empty chat space onto the canvas */
+  z-index: 1000;         /* Ensures it renders on top of the p5 canvas */
 }
 
 .chat-log p {

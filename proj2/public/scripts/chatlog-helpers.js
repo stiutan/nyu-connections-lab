@@ -29,18 +29,12 @@ const addToChatLog = (entry) => {
   message.addEventListener("animationend", () => message.remove());
 };
 
-const logMyArrival = () => {
-  sendChatLog(`👋🏼 ${myUser.name} just got off the elevator!`);
+const logLocalMessage = (message) => {
+  addToChatLog({ message, color: defaultColor });
 };
 
-const logPoke = () => {
- // 10% chance (0.1) for the rare message
-  if (Math.random() < 0.20) {
-    sendChatLog(`💥 ${myUser.name} pooped myself :(`);
-  } else {
-    // 90% chance for the standard message
-    sendChatLog(`🫵🏼 ${myUser.name} just poked your face.`);
-  }
+const logMyArrival = () => {
+  sendChatLog(`👋🏼 ${myUser.name} just got off the elevator!`);
 };
 
 // don't really need this func, can call directly

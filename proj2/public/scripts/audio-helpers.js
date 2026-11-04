@@ -71,14 +71,28 @@ const publishMyAudio = async () => {
 };
 
 const enableAudio = async () => {
+  if (audioEnabling || isAudioEnabled) return;
+
+  audioEnabling = true;
+  logLocalMessage("connecting to audio...");
+
   try {
     await joinAudioRoom();
     await audioRoom.startAudio();
     await publishMyAudio();
+
+    isAudioEnabled = true;
+    logLocalMessage("connected to audio!");
+
     return true;
   } catch (e) {
+    isAudioEnabled = false;
     console.error("Could not enable audio: ", e);
+    logLocalMessage("audio failed — press space to retry");
+
     return false;
+  } finally {
+    audioEnabling = false;
   }
 };
 

@@ -10,9 +10,12 @@ let myUser = {
 let audioRoom;
 let audios = {}; // does not include me (based on subscriptions)
 let myAudio;
+let isAudioEnabled = false;
+let audioEnabling = false;
+
+let defaultColor = { r: 26, g: 47, b: 96 }; // default navy blue
 
 // proximity values
-let defaultColor = { r: 26, g: 47, b: 96 }; // default navy blue
 let maxSize = 10; // larger icon
 let minSize = 4; // smaller icon
 let maxOpacity = 255; // 0% opaque

@@ -2,7 +2,7 @@ let customFont;
 
 function preload() {
   // Path is relative to index.html
-  customFont = loadFont('assets/VCR_OSD_MONO_1.001.ttf'); 
+  customFont = loadFont("assets/VCR_OSD_MONO_1.001.ttf");
 }
 
 function setup() {
@@ -43,27 +43,7 @@ function setupMyUser() {
 }
 
 function setupAudio() {
-  // handle audio set up button
-  let button = document.querySelector("button.audio-instruction");
-  button.addEventListener("click", async () => {
-    // disable audio while connecting
-    button.disabled = true;
-
-    let enabled = await enableAudio();
-    if (enabled) {
-      // replace audio enablement button with instruction text
-      let ptext = document.createElement("p");
-      ptext.className = "audio-instruction";
-      ptext.textContent = "hold down space to speak";
-
-      button.replaceWith(ptext);
-    } else {
-      // if connection failed, re-enable button
-      button.disabled = false;
-    }
-  });
-
-  // mute whenever user leaves window
+  // Mute whenever the user leaves the window.
   window.addEventListener("blur", mute);
 }
 
@@ -100,9 +80,18 @@ function draw() {
   updateInteractiveObjects();
 }
 
-function keyPressed() {
+function keyPressed(event) {
   if (key === " ") {
-    unmute();
+    // holding the setup press must never unmute
+    if (event?.repeat) return false;
+
+    if (!audioEnabling) {
+      if (isAudioEnabled) {
+        unmute();
+      } else {
+        enableAudio();
+      }
+    }
     return false; // cancel keyboard behavior
   }
 }

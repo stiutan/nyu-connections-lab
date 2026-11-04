@@ -11,9 +11,7 @@
 
 html,
 body {
-  background-image: url(assets/paperTex.jpg);
-  background-size: cover;
-  font-family: 'VCR OSD Mono', monospace;
+  background-color: white;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -25,8 +23,22 @@ body {
   align-items: center;
 }
 
+/* Paper texture blends over the map, avatars, and UI. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("assets/paperTex.jpg");
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 2000;
+}
+
 /* Fixed UI Elements */
 .chat-log {
+  font-size: 12px;
  position: fixed;       /* Keeps it pinned relative to the screen */
   bottom: 20px;          /* Distance from the bottom edge */
   right: 20px;           /* Distance from the right edge */
@@ -44,39 +56,6 @@ body {
   flex-shrink: 0;
   margin: 4px 0;
   animation: fade-out 1s 30s forwards;
-}
-
-.settings {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  position: fixed;
-  top: 4px;
-  right: 4px;
-  z-index: 20;
-}
-
-.audio-instruction {
-  border: 0;
-  margin: 0;
-  padding: 4px 8px;
-  background: transparent;
-  border-radius: 4px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
-}
-
-button.audio-instruction {
-  cursor: pointer;
-}
-
-button.audio-instruction:hover {
-  background: #eee;
-}
-
-button.audio-instruction:disabled {
-  cursor: default;
-  opacity: 1;
 }
 
 @keyframes fade-out {

@@ -73,6 +73,7 @@ const setupER = () => {
         Tiff: "is looking for a yogurt cup in the ER.",
         TiffQ: "is looking for a yogurt cup in the ER.",
         Sehmon: "is daydreaming about C-foods by the ER.",
+        Ashton: "is daydreaming about Funghi by the ER.",
       },
     }),
   );
@@ -140,6 +141,7 @@ const setupVending = () => {
       special: {
         Ramzy: "got a snickers bar from the vending machine.",
         Sehmon: "found seafood in the vending machine?!",
+        Ashton: "found funghi in the vending machine?!",
         Craig: "is looking for late students by the vending machine.",
       },
     }),
@@ -154,6 +156,7 @@ const setupCoffee = () => {
       special: {
         Camila: "found her rainstick by the coffee machine!",
         Sehmon: "wishes there was seafood in the kitchen.",
+        Sehmon: "wishes there was funghi in the kitchen.",
       },
     }),
   );

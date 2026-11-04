@@ -23,7 +23,7 @@ function setupCanvas() {
 }
 
 function setupMyUser() {
-  myUser.name = prompt("Please enter your name:", "") || "anonymous";
+  myUser.name = prompt("Please enter your name:", "").trim() || "anonymous";
   myUser.color = getRandomColor();
   myUser.position = getSpawnPosition();
 }

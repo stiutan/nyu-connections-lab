@@ -38,7 +38,7 @@ body::after {
 
 /* Fixed UI Elements */
 .chat-log {
-  font-size: 12px;
+  font-size: 10px;
   position: fixed; /* Keeps it pinned relative to the screen */
   bottom: 20px; /* Distance from the bottom edge */
   right: 20px; /* Distance from the right edge */

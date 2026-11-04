@@ -37,6 +37,10 @@ const logMyArrival = () => {
   sendChatLog(`👋🏼 ${myUser.name} just got off the elevator!`);
 };
 
+const logAtWorldEdge = () => {
+  sendChatLog(`🌎 ${myUser.name} reached the end of the world!`);
+};
+
 // don't really need this func, can call directly
 // but keep for readability
 const logInteraction = (message) => {

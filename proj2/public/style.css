@@ -48,7 +48,7 @@ body::after {
   display: flex;
   flex-direction: column;
   align-items: flex-end; /* Keeps text aligned to the right side */
-  pointer-events: none; /* Allows clicking through empty chat space onto the canvas */
+  pointer-events: none;
   z-index: 1000; /* Ensures it renders on top of the p5 canvas */
 }
 
@@ -82,7 +82,7 @@ body::after {
   position: absolute;
   inset: 0;
   z-index: 3;
-  pointer-events: none; /* Allows clicks to reach items below */
+  pointer-events: none;
 }
 
 /* Interactive Items Layer */
@@ -90,21 +90,12 @@ body::after {
   position: absolute;
   width: 5%; /* Adjust percentage width to size PNG items relative to map */
   height: auto;
-  cursor: default;
   z-index: 2;
-  transition:
-    transform 0.2s ease,
-    filter 0.2s ease;
 }
 
 .interactive-item.is-interacting {
   animation: object-interaction 0.4s ease-in-out;
 }
-
-/* .interactive-item.is-interactive:hover {
-  transform: scale(1.2);
-  filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.9));
-} */
 
 /* Item Coordinate Placement */
 #laser {

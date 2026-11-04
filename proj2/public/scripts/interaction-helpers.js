@@ -182,9 +182,3 @@ const setupInteractiveObjects = () => {
   setupVending();
   setupCoffee();
 };
-
-const updateInteractiveObjects = () => {
-  document.querySelectorAll(".interactive-item").forEach((item) => {
-    item.classList.toggle("is-interactive", isInteractive(item));
-  });
-};

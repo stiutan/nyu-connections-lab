@@ -48,18 +48,58 @@ const calcNextPosition = (position) => {
   };
 };
 
-const moveWithinBounds = (position) => {
-  let radius = maxSize / 2;
+const getMapEdges = () => {
+  const radius = maxSize / 2;
   return {
-    x: constrain(position.x, maxSize, getMapWidth() - maxSize),
-    y: constrain(position.y, maxSize, getMapHeight() - maxSize),
+    left: radius,
+    right: getMapWidth() - radius,
+    top: radius,
+    bottom: getMapHeight() - radius,
   };
+};
+
+const moveWithinEdges = (position) => {
+  const { left, right, top, bottom } = getMapEdges();
+  return {
+    x: constrain(position.x, left, right),
+    y: constrain(position.y, top, bottom),
+  };
+};
+
+const isAtMapEdge = (position) => {
+  if (!position) {
+    return false;
+  }
+
+  const { left, right, top, bottom } = getMapEdges();
+  return (
+    position.x <= left ||
+    position.x >= right ||
+    position.y <= top ||
+    position.y >= bottom
+  );
 };
 
 const moveUser = (position) => {
   // set new position & send update to everyone
   if (socket && socket.connected) {
-    myUser.position = moveWithinBounds(position);
+    const prevPosition = myUser.position;
+    const nextPosition = moveWithinEdges(position);
+
+    if (prevPosition) {
+      if (
+        prevPosition.x === nextPosition.x &&
+        prevPosition.y === nextPosition.y
+      ) {
+        // don't send message if user didn't move
+        return;
+      }
+
+      if (!isAtMapEdge(prevPosition) && isAtMapEdge(nextPosition))
+        logAtWorldEdge();
+    }
+
+    myUser.position = nextPosition;
     socket.emit("user-update", myUser);
   }
 };

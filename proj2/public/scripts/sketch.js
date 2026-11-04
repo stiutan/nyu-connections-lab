@@ -77,7 +77,6 @@ function draw() {
   updatePosition();
   updateAudioVolumes();
   updateUserIcons();
-  updateInteractiveObjects();
 }
 
 function keyPressed(event) {

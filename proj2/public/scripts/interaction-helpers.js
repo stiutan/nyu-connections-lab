@@ -115,6 +115,7 @@ const setupSolder = () => {
         Miles: "is soldering some speakers.",
         Daniel: "is soldering a glove.",
         Iris: "is soldering a musical cube.",
+        Mimi: "is soldering a radio.",
       },
     }),
   );

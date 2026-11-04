@@ -1,5 +1,12 @@
+let customFont;
+
+function preload() {
+  // Path is relative to index.html
+  customFont = loadFont('assets/VCR_OSD_MONO_1.001.ttf'); 
+}
+
 function setup() {
-  textFont("Inter");
+  textFont(customFont);
 
   setupCanvas();
   setupMyUser();

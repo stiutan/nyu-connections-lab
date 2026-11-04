@@ -59,6 +59,7 @@ const setupLaser = () => {
       rare: "started a fire at the laser cutter!!!",
       special: {
         Rylee: "is laser cutting a sexy lady.",
+        Melanie: "is telling your fortune by the laser cutting machine.",
       },
     }),
   );

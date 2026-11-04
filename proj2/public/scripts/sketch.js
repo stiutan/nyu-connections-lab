@@ -5,6 +5,7 @@ function setup() {
   setupMyUser();
   setupAudio();
   setupSocket();
+  setupInteractiveObjects();
 }
 
 function setupCanvas() {
@@ -89,10 +90,7 @@ function draw() {
   updatePosition();
   updateAudioVolumes();
   updateUserIcons();
-}
-
-function mousePressed(event) {
-  logPoke();
+  updateInteractiveObjects();
 }
 
 function keyPressed() {

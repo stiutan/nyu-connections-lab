@@ -6,9 +6,9 @@
 // update these to set proximity distances
 const NEAR = 0;
 const FAR = 1;
-const nearDist = 24;
-const distanceRange_icon = { near: nearDist, far: 80 }; // for icon color, size, audio
-const distanceRange_name = { near: nearDist, far: 60 }; // for name opacity
+const distanceRange_icon = { near: 24, far: 80 }; // for icon color, size, audio
+const distanceRange_name = { near: 24, far: 60 }; // for name opacity
+const distanceRange_interactiveObject = { near: 40, far: 60 }; // for interactive map objects
 
 function getProximity(other, distance) {
   if (!other.position || !myUser.position) {

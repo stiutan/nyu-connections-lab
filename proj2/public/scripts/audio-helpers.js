@@ -1,3 +1,7 @@
+/**
+ * helpers to handle audio (connection, room set up, mute/unmute)
+ */
+
 const joinAudioRoom = async () => {
   // skip if already connected to room
   if (isAudioRoomConnected()) return;

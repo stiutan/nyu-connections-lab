@@ -1,19 +1,17 @@
 function setup() {
-  createCanvas(windowWidth, windowHeight);
   textFont("Inter");
 
+  setupCanvas();
   setupMyUser();
   setupAudio();
   setupSocket();
-  setupMovementToggle();
 }
 
-function setupMovementToggle() {
-  document
-    .querySelector(".movement-toggle")
-    .addEventListener("change", (event) => {
-      movementMode = movementOptions[event.target.value];
-    });
+function setupCanvas() {
+  const { width, height } = getMapBounds();
+  const canvas = createCanvas(width, height);
+
+  canvas.parent(document.querySelector(".map-container"));
 }
 
 function setupMyUser() {
@@ -21,18 +19,22 @@ function setupMyUser() {
   colorMode(HSL, 360, 100, 100);
   let randomColor = color(random(360), random(35, 65), random(30, 50));
 
-  myUser.name = prompt("Please enter your name:", "Anonymous") || "Anonymous";
+  myUser.name = prompt("Please enter your name:", "anonymous") || "anonymous";
   myUser.color = {
     r: red(randomColor),
     g: green(randomColor),
     b: blue(randomColor),
+  };
+  myUser.position = {
+    x: random(mapSpawnArea.left, mapSpawnArea.right) * getMapWidth(),
+    y: random(mapSpawnArea.top, mapSpawnArea.bottom) * getMapHeight(),
   };
 
   // reset back to rgb for drawing
   colorMode(RGB, 255);
 }
 
-const setupAudio = () => {
+function setupAudio() {
   // handle audio set up button
   let button = document.querySelector("button.audio-instruction");
   button.addEventListener("click", async () => {
@@ -55,7 +57,7 @@ const setupAudio = () => {
 
   // mute whenever user leaves window
   window.addEventListener("blur", mute);
-};
+}
 
 function setupSocket() {
   socket = io();
@@ -63,10 +65,8 @@ function setupSocket() {
 
   socket.on("connect", () => {
     console.log("Connected to Socket");
+    socket.emit("user-update", myUser);
     logMyArrival();
-
-    // uncomment if you want an initial loading location for users / using WASD
-    // socket.emit("user-update", { ...myUser, x: mouseX, y: mouseY });
   });
 
   socket.on("users", (allUsers) => {
@@ -91,13 +91,6 @@ function draw() {
   updateUserIcons();
 }
 
-function mouseMoved() {
-  // mainly used for first initial position, draw handles other movement
-  if (movementMode === movementOptions.mouse && myUser.position === null) {
-    moveUser({ x: mouseX, y: mouseY });
-  }
-}
-
 function mousePressed(event) {
   logPoke();
 }
@@ -117,5 +110,6 @@ function keyReleased() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  const { width, height } = getMapBounds();
+  resizeCanvas(width, height);
 }

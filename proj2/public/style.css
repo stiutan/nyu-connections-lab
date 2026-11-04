@@ -46,43 +46,6 @@ body {
   z-index: 20;
 }
 
-.movement-toggle {
-  display: flex;
-  gap: 2px;
-  padding: 4px 8px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
-}
-
-.movement-toggle label {
-  position: relative;
-  cursor: pointer;
-}
-
-.movement-toggle input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-}
-
-.movement-toggle span {
-  display: block;
-  padding: 3px 6px;
-  border-radius: 4px;
-  color: #777;
-}
-
-.movement-toggle input:checked + span,
-.movement-toggle label:hover span {
-  background: #eee;
-  color: black;
-}
-
-.movement-toggle input:focus-visible + span {
-  outline: 1px solid black;
-}
-
 .audio-instruction {
   border: 0;
   margin: 0;
@@ -119,8 +82,8 @@ button.audio-instruction:disabled {
 .map-container {
   position: relative;
   display: inline-block;
-  max-width: 80vw;  /* Adjust max-width to scale overall map size */
-  max-height: 80vh; /* Keeps map within screen height */
+  max-width: 100vw; /* Adjust max-width to scale overall map size */
+  max-height: 100vh; /* Keeps map within screen height */
   z-index: 1;
 }
 
@@ -128,19 +91,17 @@ button.audio-instruction:disabled {
 .floor-map {
   display: block;
   width: 100%;
-  max-width: 80vw;
-  max-height: 80vh;
+  max-width: 100vw;
+  max-height: 100vh;
   height: auto;
   object-fit: contain;
 }
 
 /* p5 Canvas Positioning (Prevents p5 from pushing layout) */
-canvas, #defaultCanvas0 {
-  position: absolute !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
+.map-container canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
   pointer-events: none; /* Allows clicks to reach items below */
 }
 
@@ -150,8 +111,10 @@ canvas, #defaultCanvas0 {
   width: 5%; /* Adjust percentage width to size PNG items relative to map */
   height: auto;
   cursor: pointer;
-  z-index: 6;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  z-index: 2;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
 }
 
 .interactive-item:hover {
@@ -160,11 +123,35 @@ canvas, #defaultCanvas0 {
 }
 
 /* Item Coordinate Placement */
-#item-1 { top: 27%; left: 60%; } /*lazer*/
-#item-2 { top: 29%; left: 37%; } /*er*/
-#item-3 { top: 38%; left: 51%; }/*band*/
-#item-4 { top: 10%; left: 22%; }/*print*/
-#item-5 { top: 7%; left: 54%; }/*solder*/
-#item-6 { top: 38%; left: 17%; }/*foos*/
-#item-7 { top: 65%; left: 19%; } /*vend*/
-#item-8 { top: 37%; left: 71%; } /*coffee*/
+#item-1 {
+  top: 27%;
+  left: 60%;
+} /*lazer*/
+#item-2 {
+  top: 29%;
+  left: 37%;
+} /*er*/
+#item-3 {
+  top: 38%;
+  left: 51%;
+} /*band*/
+#item-4 {
+  top: 10%;
+  left: 22%;
+} /*print*/
+#item-5 {
+  top: 7%;
+  left: 54%;
+} /*solder*/
+#item-6 {
+  top: 38%;
+  left: 17%;
+} /*foos*/
+#item-7 {
+  top: 65%;
+  left: 19%;
+} /*vend*/
+#item-8 {
+  top: 37%;
+  left: 71%;
+} /*coffee*/

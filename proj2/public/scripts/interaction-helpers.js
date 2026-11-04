@@ -14,6 +14,8 @@ const getObjectPosition = (object) => {
 };
 
 const isInteractive = (item) => {
+  if (item.classList.contains("is-interacting")) return false;
+
   const object = {
     position: getObjectPosition(item),
   };
@@ -49,7 +51,7 @@ const chooseInteractionMessage = (messages) => {
 };
 
 const setupLaser = () => {
-  handleInteraction("laser", () =>
+  setupInteraction("laser", () =>
     createInteractionMessage("🔥", {
       base: "is using the laser cutter.",
       rare: "started a fire at the laser cutter!!!",
@@ -61,7 +63,7 @@ const setupLaser = () => {
 };
 
 const setupEquipment = () => {
-  handleInteraction("equipment", () =>
+  setupInteraction("equipment", () =>
     createInteractionMessage("🖥️", {
       base: "rented some gear from the ER.",
       rare: "got banned from the ER!",
@@ -74,9 +76,9 @@ const setupEquipment = () => {
 };
 
 const setupBandsaw = () => {
-  handleInteraction("bandsaw", () =>
+  setupInteraction("bandsaw", () =>
     createInteractionMessage("🪚", {
-      base: "is cutting wood on the band saw",
+      base: "is cutting wood on the band saw.",
       rare: "got sawdust in their eye!",
       special: {
         TiffS: "almost cut her hand on the band saw!",
@@ -86,7 +88,7 @@ const setupBandsaw = () => {
 };
 
 const setupPrinter = () => {
-  handleInteraction("printer", () =>
+  setupInteraction("printer", () =>
     createInteractionMessage("🖨️", {
       base: "is printing some stickers.",
       rare: "is desperately trying to contact the Design Lab.",
@@ -98,7 +100,7 @@ const setupPrinter = () => {
 };
 
 const setupSolder = () => {
-  handleInteraction("solder", () =>
+  setupInteraction("solder", () =>
     createInteractionMessage("💥", {
       base: "is soldering a PCB.",
       rare: "is crashing out soldering a PCB.",
@@ -112,13 +114,13 @@ const setupSolder = () => {
 };
 
 const setupFoosball = () => {
-  handleInteraction("foosball", () =>
+  setupInteraction("foosball", () =>
     createInteractionMessage("⚽️", {
-      base: "watched James beat Ramzy in foosball",
-      rare: "watched Ramzy beat James in foosball",
+      base: "watched James beat Ramzy in foosball.",
+      rare: "watched Ramzy beat James in foosball.",
       special: {
-        James: "beat Ramzy in foosball",
-        Ramzy: "beat James in foosball",
+        James: "beat Ramzy in foosball.",
+        Ramzy: "beat James in foosball.",
       },
       rareOdds: 0.5,
     }),
@@ -126,10 +128,10 @@ const setupFoosball = () => {
 };
 
 const setupVending = () => {
-  handleInteraction("vending", () =>
+  setupInteraction("vending", () =>
     createInteractionMessage("🍪", {
       base: "got a snack from the vending machine.",
-      rare: "spilled some hot gos by the vending machine.",
+      rare: "broke the vending machine.",
       special: {
         Ramzy: "got a snickers bar from the vending machine.",
         Sehmon: "found seafood in the vending machine?!",
@@ -139,7 +141,7 @@ const setupVending = () => {
 };
 
 const setupCoffee = () => {
-  handleInteraction("coffee", () =>
+  setupInteraction("coffee", () =>
     createInteractionMessage("☕️", {
       base: "made a fresh batch of coffee.",
       rare: "drank their 10th cup of coffee... someone stop them.",
@@ -151,14 +153,22 @@ const setupCoffee = () => {
   );
 };
 
-const handleInteraction = (id, getMessage) => {
+const setupInteraction = (id, createMessage) => {
   const item = document.getElementById(id);
   if (!item) return;
 
-  item.addEventListener("click", () => {
-    if (isInteractive(item)) {
-      logInteraction(getMessage());
-    }
+  item.addEventListener("animationend", () => {
+    item.classList.remove("is-interacting");
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" || event.repeat) return;
+    if (!isInteractive(item)) return;
+
+    event.preventDefault();
+    logInteraction(createMessage());
+
+    item.classList.add("is-interacting");
   });
 };
 

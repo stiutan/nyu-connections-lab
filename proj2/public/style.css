@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'VCR OSD Mono';
-  src: url('assets/VCR_OSD_MONO_1.001.ttf') format('truetype');
+  font-family: "VCR OSD Mono";
+  src: url("assets/VCR_OSD_MONO_1.001.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
-*{
-  font-family: 'VCR OSD Mono', monospace;
+* {
+  font-family: "VCR OSD Mono", monospace;
 }
 
 html,
@@ -39,32 +39,23 @@ body::after {
 /* Fixed UI Elements */
 .chat-log {
   font-size: 12px;
- position: fixed;       /* Keeps it pinned relative to the screen */
-  bottom: 20px;          /* Distance from the bottom edge */
-  right: 20px;           /* Distance from the right edge */
-  left: auto;            /* Overrides any previous left positioning */
-  top: auto;             /* Overrides any previous top positioning */
-  
+  position: fixed; /* Keeps it pinned relative to the screen */
+  bottom: 20px; /* Distance from the bottom edge */
+  right: 20px; /* Distance from the right edge */
+  left: auto; /* Overrides any previous left positioning */
+  top: auto; /* Overrides any previous top positioning */
+
   display: flex;
   flex-direction: column;
   align-items: flex-end; /* Keeps text aligned to the right side */
-  pointer-events: none;  /* Allows clicking through empty chat space onto the canvas */
-  z-index: 1000;         /* Ensures it renders on top of the p5 canvas */
+  pointer-events: none; /* Allows clicking through empty chat space onto the canvas */
+  z-index: 1000; /* Ensures it renders on top of the p5 canvas */
 }
 
 .chat-log p {
   flex-shrink: 0;
   margin: 4px 0;
   animation: fade-out 1s 30s forwards;
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
 }
 
 /* Map Container & Floor Map Image */
@@ -106,14 +97,14 @@ body::after {
     filter 0.2s ease;
 }
 
-.interactive-item.is-interactive {
-  cursor: pointer;
+.interactive-item.is-interacting {
+  animation: object-interaction 0.4s ease-in-out;
 }
 
-.interactive-item.is-interactive:hover {
+/* .interactive-item.is-interactive:hover {
   transform: scale(1.2);
   filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.9));
-}
+} */
 
 /* Item Coordinate Placement */
 #laser {
@@ -148,3 +139,29 @@ body::after {
   top: 37%;
   left: 71%;
 } /*coffee*/
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes object-interaction {
+  0% {
+    transform: scale(1);
+    filter: none;
+  }
+
+  50% {
+    transform: scale(1.2);
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.9));
+  }
+
+  100% {
+    transform: scale(1);
+    filter: none;
+  }
+}

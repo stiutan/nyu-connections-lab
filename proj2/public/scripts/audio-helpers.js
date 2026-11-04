@@ -88,7 +88,7 @@ const enableAudio = async () => {
   } catch (e) {
     isAudioEnabled = false;
     console.error("Could not enable audio: ", e);
-    logLocalMessage("audio failed — press space to retry");
+    logLocalMessage("audio failed — press space to retry.");
 
     return false;
   } finally {

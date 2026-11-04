@@ -70,6 +70,7 @@ const setupER = () => {
       base: "rented some gear from the ER.",
       rare: "got banned from the ER!",
       special: {
+        Tiff: "is looking for a yogurt cup in the ER.",
         TiffQ: "is looking for a yogurt cup in the ER.",
         Sehmon: "is daydreaming about C-foods by the ER.",
       },
@@ -83,6 +84,7 @@ const setupBandsaw = () => {
       base: "is cutting wood on the band saw.",
       rare: "got sawdust in their eye!",
       special: {
+        Tiff: "almost cut her hand on the band saw!",
         TiffS: "almost cut her hand on the band saw!",
       },
     }),
@@ -96,6 +98,7 @@ const setupPrinter = () => {
       rare: "is desperately trying to contact the Design Lab.",
       special: {
         Craig: "is hiding from students at the Design Lab.",
+        TiffS: "is calling Design Lab nonstop.",
       },
     }),
   );

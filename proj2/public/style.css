@@ -126,35 +126,35 @@ button.audio-instruction:disabled {
 }
 
 /* Item Coordinate Placement */
-#item-1 {
+#laser {
   top: 27%;
   left: 60%;
 } /*lazer*/
-#item-2 {
+#equipment {
   top: 29%;
   left: 37%;
 } /*er*/
-#item-3 {
+#bandsaw {
   top: 38%;
   left: 51%;
 } /*band*/
-#item-4 {
+#printer {
   top: 10%;
   left: 22%;
 } /*print*/
-#item-5 {
+#solder {
   top: 7%;
   left: 54%;
 } /*solder*/
-#item-6 {
+#foosball {
   top: 38%;
   left: 17%;
 } /*foos*/
-#item-7 {
+#vending {
   top: 65%;
   left: 19%;
 } /*vend*/
-#item-8 {
+#coffee {
   top: 37%;
   left: 71%;
 } /*coffee*/

@@ -37,6 +37,12 @@ const logPoke = () => {
   sendChatLog(`🫵🏼 ${myUser.name} just poked your face.`);
 };
 
+// don't really need this func, can call directly
+// but keep for readability
+const logInteraction = (message) => {
+  sendChatLog(message);
+};
+
 const logUserDeparture = (user) => {
   // Each remaining client displays this once; don't relay it again.
   addToChatLog({

@@ -2,6 +2,21 @@
  * helpers to draw user dots/icons
  */
 
+const getRandomColor = () => {
+  // avoid ugly colors lol (too vivid, too light)
+  colorMode(HSL, 360, 100, 100);
+  let randomColor = color(random(360), random(35, 65), random(30, 50));
+
+  // reset back to rgb for drawing
+  colorMode(RGB, 255);
+
+  return {
+    r: red(randomColor),
+    g: green(randomColor),
+    b: blue(randomColor),
+  };
+};
+
 function updateUserIcons() {
   push();
   scale(getMapScale());

@@ -28,3 +28,10 @@ const getMapWidth = () => {
 const getMapHeight = () => {
   return getMapBounds().height / getMapScale();
 };
+
+const getSpawnPosition = () => {
+  return {
+    x: random(mapSpawnArea.left, mapSpawnArea.right) * getMapWidth(),
+    y: random(mapSpawnArea.top, mapSpawnArea.bottom) * getMapHeight(),
+  };
+};

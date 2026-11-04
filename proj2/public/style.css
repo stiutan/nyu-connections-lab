@@ -91,6 +91,12 @@ body::after {
   width: 5%; /* Adjust percentage width to size PNG items relative to map */
   height: auto;
   z-index: 2;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+
+.interactive-item.is-interactive {
+  transform: scale(1);
 }
 
 .interactive-item.is-interacting {

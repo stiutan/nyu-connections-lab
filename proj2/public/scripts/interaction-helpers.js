@@ -14,14 +14,16 @@ const getObjectPosition = (object) => {
 };
 
 const isInteractive = (item) => {
-  if (item.classList.contains("is-interacting")) return false;
-
   const object = {
     position: getObjectPosition(item),
   };
 
   const proximity = getProximity(object, distanceRange_interactiveObject);
   return proximity === NEAR;
+};
+
+const isInteracting = (item) => {
+  return item.classList.contains("is-interacting");
 };
 
 const createInteractionMessage = (emoji, messages) => {
@@ -93,7 +95,7 @@ const setupPrinter = () => {
       base: "is printing some stickers.",
       rare: "is desperately trying to contact the Design Lab.",
       special: {
-        Craig: "is hiding from students in the Design Lab.",
+        Craig: "is hiding from students at the Design Lab.",
       },
     }),
   );
@@ -102,8 +104,8 @@ const setupPrinter = () => {
 const setupSolder = () => {
   setupInteraction("solder", () =>
     createInteractionMessage("💥", {
-      base: "is soldering a PCB.",
-      rare: "is crashing out soldering a PCB.",
+      base: "is soldering a PCB",
+      rare: "is breathing in the fumes while soldering.",
       special: {
         Miles: "is soldering some speakers.",
         Daniel: "is soldering a glove.",
@@ -119,8 +121,8 @@ const setupFoosball = () => {
       base: "watched James beat Ramzy in foosball.",
       rare: "watched Ramzy beat James in foosball.",
       special: {
-        James: "beat Ramzy in foosball.",
-        Ramzy: "beat James in foosball.",
+        James: "beat Ramzy in foosball!",
+        Ramzy: "beat James in foosball!",
       },
       rareOdds: 0.5,
     }),
@@ -131,10 +133,11 @@ const setupVending = () => {
   setupInteraction("vending", () =>
     createInteractionMessage("🍪", {
       base: "got a snack from the vending machine.",
-      rare: "broke the vending machine.",
+      rare: "is hiding behind the vending machine.",
       special: {
         Ramzy: "got a snickers bar from the vending machine.",
         Sehmon: "found seafood in the vending machine?!",
+        Craig: "is looking for late students by the vending machine.",
       },
     }),
   );
@@ -144,7 +147,7 @@ const setupCoffee = () => {
   setupInteraction("coffee", () =>
     createInteractionMessage("☕️", {
       base: "made a fresh batch of coffee.",
-      rare: "drank their 10th cup of coffee... someone stop them.",
+      rare: "drank their 10th cup of coffee... someone stop them!",
       special: {
         Camila: "found her rainstick by the coffee machine!",
         Sehmon: "wishes there was seafood in the kitchen.",
@@ -164,6 +167,7 @@ const setupInteraction = (id, createMessage) => {
   window.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" || event.repeat) return;
     if (!isInteractive(item)) return;
+    if (isInteracting(item)) return;
 
     event.preventDefault();
     logInteraction(createMessage());
@@ -181,4 +185,10 @@ const setupInteractiveObjects = () => {
   setupFoosball();
   setupVending();
   setupCoffee();
+};
+
+const updateInteractiveObjects = () => {
+  document.querySelectorAll(".interactive-item").forEach((item) => {
+    item.classList.toggle("is-interactive", isInteractive(item));
+  });
 };

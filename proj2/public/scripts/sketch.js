@@ -23,23 +23,9 @@ function setupCanvas() {
 }
 
 function setupMyUser() {
-  // avoid ugly colors lol (too vivid, too light)
-  colorMode(HSL, 360, 100, 100);
-  let randomColor = color(random(360), random(35, 65), random(30, 50));
-
-  myUser.name = prompt("Please enter your name:", "anonymous") || "anonymous";
-  myUser.color = {
-    r: red(randomColor),
-    g: green(randomColor),
-    b: blue(randomColor),
-  };
-  myUser.position = {
-    x: random(mapSpawnArea.left, mapSpawnArea.right) * getMapWidth(),
-    y: random(mapSpawnArea.top, mapSpawnArea.bottom) * getMapHeight(),
-  };
-
-  // reset back to rgb for drawing
-  colorMode(RGB, 255);
+  myUser.name = prompt("Please enter your name:", "") || "anonymous";
+  myUser.color = getRandomColor();
+  myUser.position = getSpawnPosition();
 }
 
 function setupAudio() {
@@ -77,6 +63,7 @@ function draw() {
   updatePosition();
   updateAudioVolumes();
   updateUserIcons();
+  updateInteractiveObjects();
 }
 
 function keyPressed(event) {

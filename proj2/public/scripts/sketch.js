@@ -29,8 +29,8 @@ function setupMyUser() {
 }
 
 function setupAudio() {
-  // Mute whenever the user leaves the window.
-  window.addEventListener("blur", mute);
+  // mute whenever user leaves window
+  window.addEventListener("blur", releaseAudioButton);
 }
 
 function setupSocket() {
@@ -67,24 +67,18 @@ function draw() {
 }
 
 function keyPressed(event) {
-  if (key === " ") {
+  if (event.code === "Space") {
     // holding the setup press must never unmute
-    if (event?.repeat) return false;
+    if (event.repeat) return false;
 
-    if (!audioEnabling) {
-      if (isAudioEnabled) {
-        unmute();
-      } else {
-        enableAudio();
-      }
-    }
+    pressAudioButton();
     return false; // cancel keyboard behavior
   }
 }
 
-function keyReleased() {
-  if (key === " ") {
-    mute();
+function keyReleased(event) {
+  if (event.code === "Space") {
+    releaseAudioButton();
     return false; // cancel keyboard behavior
   }
 }

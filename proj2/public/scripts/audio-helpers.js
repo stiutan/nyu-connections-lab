@@ -71,9 +71,9 @@ const publishMyAudio = async () => {
 };
 
 const enableAudio = async () => {
-  if (audioEnabling || isAudioEnabled) return;
+  if (isAudioEnabling || isAudioEnabled) return;
 
-  audioEnabling = true;
+  isAudioEnabling = true;
   logLocalMessage("connecting to audio...");
 
   try {
@@ -92,7 +92,7 @@ const enableAudio = async () => {
 
     return false;
   } finally {
-    audioEnabling = false;
+    isAudioEnabling = false;
   }
 };
 
@@ -111,6 +111,25 @@ const isSpeaking = (id) => {
   } else {
     return audios[id] && !audios[id].isMuted;
   }
+};
+
+const pressAudioButton = () => {
+  if (!isAudioEnabled) {
+    if (!isAudioEnabling) {
+      enableAudio();
+    }
+    return;
+  }
+
+  if (!isAudioButtonPressed) {
+    isAudioButtonPressed = true;
+    unmute();
+  }
+};
+
+const releaseAudioButton = () => {
+  isAudioButtonPressed = false;
+  mute();
 };
 
 const unmute = async () => {

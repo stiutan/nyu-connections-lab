@@ -11,7 +11,8 @@ let audioRoom;
 let audios = {}; // does not include me (based on subscriptions)
 let myAudio;
 let isAudioEnabled = false;
-let audioEnabling = false;
+let isAudioEnabling = false;
+let isAudioButtonPressed = false;
 
 let defaultColor = { r: 26, g: 47, b: 96 }; // default navy blue
 

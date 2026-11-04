@@ -88,6 +88,7 @@ const setupBandsaw = () => {
       special: {
         Tiff: "almost cut her hand on the band saw!",
         TiffS: "almost cut her hand on the band saw!",
+        Miles: "is dreaming about the Sony Lab.",
       },
     }),
   );

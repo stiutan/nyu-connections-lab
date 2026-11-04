@@ -100,7 +100,7 @@ const setupPrinter = () => {
       rare: "is desperately trying to contact the Design Lab.",
       special: {
         Craig: "is hiding from students at the Design Lab.",
-        TiffS: "is calling Design Lab nonstop.",
+        TiffS: "is desperately wanting to use the Design Lab.",
       },
     }),
   );
@@ -157,7 +157,7 @@ const setupCoffee = () => {
       special: {
         Camila: "found her rainstick by the coffee machine!",
         Sehmon: "wishes there was seafood in the kitchen.",
-        Sehmon: "wishes there was funghi in the kitchen.",
+        Ashton: "wishes there was funghi in the kitchen.",
       },
     }),
   );

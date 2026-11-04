@@ -64,8 +64,8 @@ const setupLaser = () => {
   );
 };
 
-const setupEquipment = () => {
-  setupInteraction("equipment", () =>
+const setupER = () => {
+  setupInteraction("er", () =>
     createInteractionMessage("🖥️", {
       base: "rented some gear from the ER.",
       rare: "got banned from the ER!",
@@ -104,8 +104,8 @@ const setupPrinter = () => {
 const setupSolder = () => {
   setupInteraction("solder", () =>
     createInteractionMessage("💥", {
-      base: "is soldering a PCB",
-      rare: "is breathing in the fumes while soldering.",
+      base: "is soldering a PCB.",
+      rare: "is breathing in fumes while soldering.",
       special: {
         Miles: "is soldering some speakers.",
         Daniel: "is soldering a glove.",
@@ -178,7 +178,7 @@ const setupInteraction = (id, createMessage) => {
 
 const setupInteractiveObjects = () => {
   setupLaser();
-  setupEquipment();
+  setupER();
   setupBandsaw();
   setupPrinter();
   setupSolder();

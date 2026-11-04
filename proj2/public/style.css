@@ -28,7 +28,7 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("assets/paperTex.jpg");
+  background-image: url("assets/paper-texture-overlay.jpg");
   background-size: cover;
   background-position: center;
   mix-blend-mode: multiply;
@@ -38,7 +38,7 @@ body::after {
 
 /* Fixed UI Elements */
 .chat-log {
-  font-size: 10px;
+  font-size: 12px;
   position: fixed; /* Keeps it pinned relative to the screen */
   bottom: 20px; /* Distance from the bottom edge */
   right: 20px; /* Distance from the right edge */
@@ -108,7 +108,7 @@ body::after {
   top: 27%;
   left: 60%;
 } /*lazer*/
-#equipment {
+#er {
   top: 29%;
   left: 37%;
 } /*er*/
